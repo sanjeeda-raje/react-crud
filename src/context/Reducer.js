@@ -8,7 +8,7 @@ const CartReducer = (state,action) => {
         ...state,
         cart: state.cart.filter((c) => c.id !== action.payload.id),
       };
-      case "ADD_PRODUCT": // Add this new case
+      case "ADD_PRODUCT": 
       return {
         ...state,
         products: [...state.products, action.payload],

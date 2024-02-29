@@ -39,7 +39,7 @@ const schema = yup.object().shape({
     .mixed()
     .required('An image is required')
     .test('fileSize', 'The file is too large', (value) => {
-      return value && value[0] && value[0].size <= 1024 * 1024; // 1MB
+      return value && value[0] && value[0].size <= 1024 * 1024; 
     })
     .test('fileType', 'Unsupported file format', (value) => {
       return value && value[0] && ['image/jpeg', 'image/png', 'image/gif'].includes(value[0].type);
@@ -130,7 +130,7 @@ const CreateProduct = () => {
                     <TextField
                       accept="image/*"
                       type="file"
-                      onChange={(e) => field.onChange(e.target.files)} // Assign the selected file(s) to the form
+                      onChange={(e) => field.onChange(e.target.files)}
                       style={{ marginBottom: '10px' }}
                     />
                     <Typography sx={{ ...theme.errorMsg }}>{errors.prodimage?.message}</Typography>
