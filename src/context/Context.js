@@ -11,7 +11,7 @@ const Context = ({children}) => {
         price :faker.commerce.price() ,
         product: faker.commerce.product(),
        img: faker.image.urlLoremFlickr({ category: 'food' }),
-       instock:parseInt(faker.string.numeric()), 
+      //  instock:parseInt(faker.string.numeric()), 
         productname :   faker.commerce.productName() ,
         Desc :    faker.commerce.productDescription() ,
         ratings: parseInt(faker.string.numeric()),
@@ -33,9 +33,11 @@ const Context = ({children}) => {
      const deleteProduct = (dispatch, id) => {
       dispatch({ type: "DELETE_PRODUCT", payload: id });
     };
-    
+    const updateProduct = (dispatch, id, newData) => {
+      dispatch({ type: "UPDATE_PRODUCT", payload: { id, newData } });
+    };
   return (
-    <CartContext.Provider value={{ state, dispatch, productState, productDispatch,addProduct,deleteProduct }}>
+    <CartContext.Provider value={{ state, dispatch, productState, productDispatch,addProduct,deleteProduct ,updateProduct}}>
       {children}
     </CartContext.Provider>
   );

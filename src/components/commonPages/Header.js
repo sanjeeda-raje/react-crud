@@ -194,7 +194,7 @@ const Header = () => {
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Searc by name"
-              inputProps={{ 'aria-label': 'search' }}
+              // inputProps={{ 'aria-label': 'search' }}
               onChange={(e) => {
                 productDispatch({
                   type: "FILTER_BY_SEARCH",
@@ -210,7 +210,6 @@ const Header = () => {
 
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
               color="inherit"
             >
               <Badge badgeContent={cart.length} color="error">

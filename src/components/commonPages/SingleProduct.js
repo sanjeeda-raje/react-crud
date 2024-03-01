@@ -1,19 +1,22 @@
-import { Link } from 'react-router-dom';
 import { CartState } from '../../context/Context'
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Card, CardContent, CardMedia, Typography, Rating, Box } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Rating, Box, IconButton } from '@mui/material';
 import React, { useState } from 'react';
-
+import EditIcon from '@mui/icons-material/Edit';
 import Swal from 'sweetalert2';
 
-
 const SingleProduct = ({ prod }) => {
-
+  const navigate = useNavigate();
   const [value, setValue] = useState(prod.ratings);
   const {
     state: { cart },
     dispatch,
   } = CartState();
+
+  const handleUpdateProduct = () => {
+    navigate(`/createProduct/${prod.id}`)
+  }
 
   const handleDeleteProduct = () => {
     Swal.fire({
@@ -44,7 +47,7 @@ const SingleProduct = ({ prod }) => {
         <Typography gutterBottom variant="body" component="div">
           Name: {prod.productname}
         </Typography>
-        <Typography>Price : ${prod.price.split('.')[0]}</Typography>
+        <Typography>Price : ${prod.price}</Typography>
         <Rating
           name="simple-controlled"
           value={value}
@@ -52,6 +55,12 @@ const SingleProduct = ({ prod }) => {
             setValue(newValue);
           }}
         />
+        <Box>
+        <IconButton onClick={handleUpdateProduct}>
+          <EditIcon />
+        </IconButton>
+        </Box>
+        
         <Box spacing={2} direction="column" sx={{ justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Link onClick={
